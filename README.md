@@ -1,5 +1,6 @@
-# Android-EPO
-Android app to update MTK EPO data
+# Android-MTK-EPO-update
 
-This app alows to update EPO file for GPS
-Root access needed
+
+This app allows to update EPO (Mediatek Technology) file for GPS
+
+To get functionality root access is required
