@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="manual_update">Обновить сейчас!</string>
+    <string name="ok">EPO обновлено</string>
+    <string name="problem">EPO не обновлено</string>
+    <string name="no_root">Недостаточно прав!</string>
+    <string name="last_update">Обновлено:\t\t</string>
+    <string name="date_format">dd-MM-yyyy HH:mm:ss</string>
+    <string name="weekly">Каждую неделю</string>
+    <string name="daily">Каждый день</string>
+    <string name="monthly">Каждый месяц</string>
+    <string name="audoupdate_set">Автоматическое обновление EPO включено</string>
+    <string name="audoupdate_reset">Автоматическое обновление EPO выключено</string>
+    <string name="autoupdate">Автообновление</string>
+</resources>
