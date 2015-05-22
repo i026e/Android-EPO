@@ -10,6 +10,7 @@ import org.i026e.epo_update.AsyncResponse;
 import org.i026e.epo_update.SettingsManager;
 import org.i026e.epo_update.UpdateEPO;
 import org.i026e.epo_update.utils.DateUtils;
+import org.i026e.epo_update.utils.InterfaceUtils;
 import org.i026e.epo_update.utils.NetworkUtils;
 
 /**

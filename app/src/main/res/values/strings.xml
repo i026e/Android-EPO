@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name" translatable="false">EPO update</string>
+    <string name="app_name">EPO update</string>
 
     <string name="manual_update">Update now!</string>
     <string name="ok">EPO updated</string>
@@ -10,7 +10,9 @@
     <string name="weekly">Weekly</string>
     <string name="daily">Daily</string>
     <string name="monthly">Monthly</string>
+    <string name="wifi_only">WiFi only</string>
     <string name="audoupdate_set">Automatic EPO update enabled</string>
     <string name="audoupdate_reset">Automatic EPO update disable</string>
     <string name="autoupdate">Autoupdate</string>
+    <string name="or">--or--</string>
 </resources>

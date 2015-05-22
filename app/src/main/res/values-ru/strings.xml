@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="app_name">Обновление EPO</string>
+
     <string name="manual_update">Обновить сейчас!</string>
     <string name="ok">EPO обновлено</string>
     <string name="problem">EPO не обновлено</string>
@@ -9,7 +11,9 @@
     <string name="weekly">Каждую неделю</string>
     <string name="daily">Каждый день</string>
     <string name="monthly">Каждый месяц</string>
+    <string name="wifi_only">Только WiFi</string>
     <string name="audoupdate_set">Автоматическое обновление EPO включено</string>
     <string name="audoupdate_reset">Автоматическое обновление EPO выключено</string>
     <string name="autoupdate">Автообновление</string>
+    <string name="or">--или--</string>
 </resources>

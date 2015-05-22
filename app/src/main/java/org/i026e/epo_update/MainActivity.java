@@ -81,7 +81,7 @@ public class MainActivity extends Activity implements CompoundButton.OnCheckedCh
     private void setAlarms(){
         if (mSettingsManager.getAutoUpdateEnabled()){
             AlarmManagerBroadcastReceiver.setAlarm(getApplicationContext());
-            //InterfaceUtils.makeToast(this, getString(R.string.audoupdate_set));
+            InterfaceUtils.makeToast(this, getString(R.string.audoupdate_set));
         }
         else{
             AlarmManagerBroadcastReceiver.cancelAlarm(getApplicationContext());
