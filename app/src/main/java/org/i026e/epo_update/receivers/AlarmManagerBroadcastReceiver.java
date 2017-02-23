@@ -9,6 +9,7 @@ import android.content.Intent;
 import org.i026e.epo_update.AsyncResponse;
 import org.i026e.epo_update.SettingsManager;
 import org.i026e.epo_update.UpdateEPO;
+import org.i026e.epo_update.UpdateIntentService;
 import org.i026e.epo_update.utils.DateUtils;
 import org.i026e.epo_update.utils.InterfaceUtils;
 import org.i026e.epo_update.utils.NetworkUtils;
@@ -19,7 +20,7 @@ import org.i026e.epo_update.utils.NetworkUtils;
  * Do updates with specified periodicity
  */
 public class AlarmManagerBroadcastReceiver extends BroadcastReceiver {
-    private static final int MAGIC_NUMBER = 1236547890;
+    private static final int MAGIC_NUMBER = 743647978;
     private static final long INITIAL_DELAY = 30000L;
 
 
@@ -32,36 +33,13 @@ public class AlarmManagerBroadcastReceiver extends BroadcastReceiver {
         // Check if it is time to update EPO
         if (DateUtils.calculateDaysFromToday(settingsManager.getLastUpdate()) >= settingsManager.getUpdatePeriod()) {
             if (NetworkUtils.isConnected(context, settingsManager.getWifiOnly())){
-                updateEPO(context);
+                UpdateIntentService.startActionUpdate(context);
             }
             else {
                 //waiting for network
                 NetworkChangeBroadcastReceiver.enable(context);
             }
         }
-    }
-
-    // callback to save time of last update
-    private static void onDataUpdate(Context context, Object output){
-        if (output != null){
-            boolean result = (Boolean) output;
-            if (result){
-                SettingsManager.setLastUpdate(context, DateUtils.today());
-            }
-        }
-
-    }
-
-    // do the job
-    public static void updateEPO(final Context context){
-        AsyncResponse response = new AsyncResponse() {
-            @Override
-            public void processFinish(Object output) {
-                onDataUpdate(context, output);
-            }
-        };
-        UpdateEPO uepo = new UpdateEPO(context, response);
-        uepo.execute();
     }
 
 

@@ -37,21 +37,7 @@ public class UpdateEPO  extends AsyncTask<Void, String, Boolean> {
     protected Boolean doInBackground(Void... v) {
         if (RootUtils.validRoot()) {
             try {
-                //downloading epo and its md5
-                File data = FileUtils.downloadFile(EPO_DAT_URL, String.valueOf(context.getCacheDir()), DAT_NAME);
-                File md5 = FileUtils.downloadFile(EPO_MD5_URL, String.valueOf(context.getCacheDir()), MD5_NAME);
-                if (data != null && md5 != null) { //check they actually downloaded
-                    if (FileUtils.isValidMD5(data, md5)) { // and check if data file correct
-                        // copy file, set permissions and owner
-                        if (RootUtils.rootCopy(data, EPO_FILE_PATH)
-                                && RootUtils.rootChMod(EPO_FILE_PATH, FILE_MOD)
-                                && RootUtils.rootChOwn(EPO_FILE_PATH, FILE_OWNER, FILE_OWNER)) {
-                            publishProgress(context.getString(R.string.ok));
-                            return true;
-                        }
-                    }
-                }
-
+                return update(this.context);
             } catch (Exception e) {
                 publishProgress(e.getLocalizedMessage());
             }
@@ -70,4 +56,20 @@ public class UpdateEPO  extends AsyncTask<Void, String, Boolean> {
         delegate.processFinish(result);
     }
 
+    public static boolean update(Context context) throws java.lang.Exception{
+        //downloading epo and its md5
+        File data = FileUtils.downloadFile(EPO_DAT_URL, String.valueOf(context.getCacheDir()), DAT_NAME);
+        File md5 = FileUtils.downloadFile(EPO_MD5_URL, String.valueOf(context.getCacheDir()), MD5_NAME);
+        if (data != null && md5 != null) { //check they actually downloaded
+            if (FileUtils.isValidMD5(data, md5)) { // and check if data file correct
+                // copy file, set permissions and owner
+                if (RootUtils.rootCopy(data, EPO_FILE_PATH)
+                        && RootUtils.rootChMod(EPO_FILE_PATH, FILE_MOD)
+                        && RootUtils.rootChOwn(EPO_FILE_PATH, FILE_OWNER, FILE_OWNER)) {
+                    return true;
+                }
+            }
+        }
+        return  false;
+    }
 }

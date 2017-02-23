@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="org.i026e.epo_update" >
+    package="org.i026e.epo_update">
 
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
-    <uses-permission android:name="android.permission.ACCESS_SUPERUSER"/>
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.ACCESS_SUPERUSER" />
 
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppTheme">
         <activity
             android:name=".MainActivity"
-            android:label="@string/app_name" >
+            android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -22,22 +22,31 @@
             </intent-filter>
         </activity>
 
-
-
-        <receiver android:name=".receivers.AlarmManagerBroadcastReceiver">
-        </receiver>
-
-         <receiver android:name=".receivers.BootUpBroadcastReceiver" android:enabled="false">
-             <intent-filter>
-                 <action android:name="android.intent.action.BOOT_COMPLETED"/>
-             </intent-filter>
-         </receiver>
-
-        <receiver android:name=".receivers.NetworkChangeBroadcastReceiver" android:enabled="false">
+        <receiver
+            android:name=".receivers.AlarmManagerBroadcastReceiver"
+            android:enabled="true"
+            android:process=":remote" />
+        <receiver
+            android:name=".receivers.BootUpBroadcastReceiver"
+            android:enabled="false">
             <intent-filter>
-                <action android:name="android.net.conn.CONNECTIVITY_CHANGE"/>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+        <receiver
+            android:name=".receivers.NetworkChangeBroadcastReceiver"
+            android:enabled="false">
+            <intent-filter>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
             </intent-filter>
         </receiver>
 
+        <service android:enabled="true" android:name=".UpdateIntentService">
+            <intent-filter>
+                <action android:name="org.i026e.epo_update.action.UPDATE_EPO"/>
+            </intent-filter>
+        </service>
+
     </application>
+
 </manifest>

@@ -4,6 +4,9 @@ import android.app.IntentService;
 import android.content.Intent;
 import android.content.Context;
 
+import org.i026e.epo_update.utils.DateUtils;
+import org.i026e.epo_update.utils.InterfaceUtils;
+
 /**
  * An {@link IntentService} subclass for handling asynchronous task requests in
  * a service on a separate handler thread.
@@ -32,21 +35,20 @@ public class UpdateIntentService extends IntentService {
 
     @Override
     protected void onHandleIntent(Intent intent) {
+        Context context = getApplicationContext();
         if (intent != null) {
             final String action = intent.getAction();
             if (ACTION_UPDATE_EPO.equals(action)) {
-                handleActionUpdate();
+                try {
+                    if (UpdateEPO.update(context)) {
+                        SettingsManager.setLastUpdate(context, DateUtils.today());
+                    }
+                } catch (Exception e) {
+                    InterfaceUtils.makeToast(context, e.getLocalizedMessage());
+                }
+
             }
         }
-    }
-
-    /**
-     * Handle action Foo in the provided background thread with the provided
-     * parameters.
-     */
-    private void handleActionUpdate() {
-        // TODO: Handle action Foo
-        throw new UnsupportedOperationException("Not yet implemented");
     }
 
 }
